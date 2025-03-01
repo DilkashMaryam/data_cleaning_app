@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import os
-from io import BytesIo
+from io import BytesIO
 
 st.set_page_config(page_title= "Data Sweeper",layout="wide" )
 
@@ -54,7 +54,7 @@ if uploaded_files:
 
             with col2:
                 if st.button(f"Fill missing values for {file.name}"):
-                    numeric_cols = df.select_dtypes(includes=['number']).columns
+                    numeric_cols = df.select_dtypes(include=['number']).columns
                     df[numeric_cols] = df[numeric_cols].fillna(df[numeric_cols].mean())
                     st.write("☑️ Missing values have been filled!")
 
@@ -79,7 +79,7 @@ if uploaded_files:
                 mime_type = "text/csv"
 
             elif conversion_type == "Excel":
-                df.to.to_excel(buffer, index=False)
+                df.to_excel(buffer, index=False)
                 file_name = file.name.replace(file_ext, ".xlsx")
                 mime_type = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             buffer.seek(0)
