@@ -60,7 +60,7 @@ if uploaded_files:
 
 
         st.subheader("🔐 Select Colomns to Keep")
-        columns = st.multielect(f"Choose columns for {file.name}", df.columns, default=df.columns)
+        columns = st.multiselect(f"Choose columns for {file.name}", df.columns, default=df.columns)
         df = df[columns]
 
         #Data Visualization
@@ -72,9 +72,9 @@ if uploaded_files:
         st.subheader("🔄 Conversion options")
         conversion_type = st.radio(f"Convert {file.name} to:", ["CSV", "Excel"], key=file.name)
         if st.button(f"Convert{file.name}"):
-            buffer = BytesIo()
+            buffer = BytesIO()
             if conversion_type == "CSV":
-                df.to.csv(buffer, index=False)
+                df.to_csv(buffer, index=False)
                 file_name = file.name.replace(file_ext, ".csv")
                 mime_type = "text/csv"
 
