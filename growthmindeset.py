@@ -3,7 +3,7 @@ import pandas as pd
 import os
 import io import BytesIo
 
-st.set_page_config(page_title== "Data Sweeper",layout="wide" )
+st.set_page_config(page_title= "Data Sweeper",layout="wide" )
 
 #custom css
 st.markdown(
